@@ -1,55 +1,62 @@
 # Supply Chain & Inventory Analytics
 
-## Project Overview
+## 📊 Project Overview
 
 **Supply Chain & Inventory Analytics** is an end-to-end data analytics project built to analyze sales, profitability, customers, products, markets, shipping performance, and order activity.
 
-The project uses:
+The project follows a practical analytics workflow:
 
-- **Python** — data cleaning and exploratory analysis
-- **MySQL** — SQL-based business analysis
-- **Power BI** — interactive dashboard and visualization
+**Python → MySQL → Power BI → Business Insights**
 
-### Workflow
+### Tools Used
 
-**Raw Dataset → Python Data Cleaning → MySQL SQL Analysis → Power BI Dashboard → Business Insights**
+- Python
+- Pandas
+- Google Colab
+- MySQL
+- MySQL Workbench
+- Power BI
+- DAX
 
 ---
 
-## Business Objectives
+## 🎯 Business Objectives
 
 The project focuses on:
 
-1. Understanding overall sales and profitability
-2. Analyzing customer segments and markets
-3. Identifying high-performing product categories and products
-4. Understanding shipping and delivery performance
-5. Analyzing customer and order activity
-6. Building an interactive Power BI dashboard
-7. Creating a simple, investigation-oriented view of supply-chain performance
+- Understanding overall sales and profitability
+- Analyzing customer segments and markets
+- Identifying high-performing products and categories
+- Analyzing shipping and delivery performance
+- Understanding customer and order activity
+- Identifying important business patterns
+- Building an interactive Power BI dashboard
+- Presenting insights in an easy-to-understand format
 
 ---
 
-## Dataset
+# 📁 Dataset
 
-**Dataset:** DataCo Supply Chain Dataset
+The project uses the **DataCo Supply Chain Dataset**.
 
-The cleaned dataset contains:
+### Dataset Details
 
-- **180,519 rows**
-- **45 columns**
-- **0 duplicate rows**
-- **0 missing values after cleaning**
+- Rows: **180,519**
+- Columns after cleaning: **44**
+- Duplicate rows: **0**
+- Missing values after cleaning: **0**
 
-Main business fields include:
+### Main Business Fields
 
 - Sales
 - Order Profit Per Order
-- Customer ID
+- Order Id
+- Customer Id
 - Customer Segment
 - Product Name
 - Category Name
 - Market
+- Region
 - Shipping Mode
 - Shipping Delay
 - Delivery Status
@@ -57,15 +64,17 @@ Main business fields include:
 - Order Date
 - Shipping Date
 
+The original dataset contained unnecessary personal and non-analytical fields. These were removed during Python data cleaning.
+
 ---
 
-# 1. Python Data Cleaning & EDA
+# 1️⃣ Python Data Cleaning & EDA
 
-Python was used first to prepare the dataset before SQL analysis and dashboard development.
+Python was used to prepare and validate the dataset before performing SQL analysis and building the Power BI dashboard.
 
-### Cleaning performed
+### Data Cleaning
 
-The following unnecessary/personal fields were removed:
+The following unnecessary fields were removed:
 
 - Customer Email
 - Customer Password
@@ -82,32 +91,32 @@ Date columns were converted to proper datetime format:
 - `order date (DateOrders)`
 - `shipping date (DateOrders)`
 
-### Data quality checks
+### Data Quality Checks
 
 - Duplicate rows: **0**
 - Missing values after cleaning: **0**
 - Negative order quantities: **0**
 - Negative shipping days: **0**
 
-The cleaned dataset was saved as:
+The cleaned dataset was used for both MySQL analysis and Power BI.
 
-`DataCoSupplyChain_Cleaned.csv`
+> The cleaned CSV is not included in this GitHub repository because it exceeds GitHub's browser upload size limit.
 
 ---
 
-# 2. MySQL Analysis
+# 2️⃣ MySQL Analysis
 
-The cleaned CSV was imported into MySQL.
+The cleaned dataset was imported into MySQL for structured business analysis.
 
 ### Database
 
 `Supply_chain_analytics`
 
-### Main table
+### Main Table
 
 `supply_chain`
 
-### Import validation
+### Import Validation
 
 - Rows imported: **180,519**
 - Import warnings: **0**
@@ -116,165 +125,137 @@ The cleaned CSV was imported into MySQL.
 
 | Metric | Result |
 |---|---:|
-| Total Sales | **36,784,734.31** |
-| Total Profit | **3,966,902.97** |
-| Total Orders | **65,752** |
-| Total Customers | **20,652** |
-| Total Products | **118** |
-| Profit Margin | **~10.78%** |
-| Average Shipping Delay | **~0.57 days** |
+| Total Sales | 36,784,734.31 |
+| Total Profit | 3,966,902.97 |
+| Total Orders | 65,752 |
+| Total Customers | 20,652 |
+| Total Products | 118 |
+| Profit Margin | ~10.78% |
+| Average Shipping Delay | ~0.57 days |
 
-> **Note:** Sales is calculated using `SUM(Sales)` at the dataset row/line-item level. Orders and customers are counted using distinct IDs.
+> Sales and profit are calculated at the dataset row/line-item level. Orders and customers are calculated using distinct IDs where applicable.
 
----
+### SQL Analysis Performed
 
-## SQL Analysis Performed
+#### Sales Analysis
 
-The project includes beginner-friendly SQL queries for:
-
-### Sales Analysis
 - Total Sales
 - Sales by Customer Segment
 - Sales by Market
 - Sales by Shipping Mode
-- Sales by Category
 - Top 10 Products by Sales
 - Top 10 Customers by Sales
 
-### Profit Analysis
+#### Profit Analysis
+
 - Total Profit
-- Profit Margin
 - Profit by Customer Segment
 - Profit by Shipping Mode
 
-### Delivery Analysis
+#### Delivery Analysis
+
 - Average Shipping Delay
 - Delivery Status Distribution
-- Delivery Status Percentage
 
-### Order Analysis
-- Order Status and Sales
+#### Order Analysis
 
-The complete SQL script is available in:
+- Order Status
+- Sales by Order Status
 
-`Supply_Chain_Analytics_SQL.sql`
+The complete SQL script is available here:
+
+**`Supply_Chain_Analytics_SQL.sql`**
 
 ---
 
+# 3️⃣ Power BI Dashboard
+
+The cleaned dataset was imported into Power BI and used to create a three-page dashboard.
+
+## Page 1 — Executive Overview
+
+The first page provides a high-level overview of the business.
+
+### KPIs
+
+- Total Sales
+- Total Profit
+- Total Orders
+- Total Products
+- Total Customers
+
+### Visuals
+
+- Monthly Sales Trend
+- Sales by Category
+- Sales by Customer Segment
+- Sales by Market
+
+### Dashboard Preview
+
+![Executive Overview Dashboard](screenshots/Executive%20Overview%20Dashboard.png)
+
 ---
 
-# 4. Power BI Dashboard
+# Page 2 — Sales & Customer Analysis
 
-The cleaned dataset was imported into Power BI and used to build a three-page interactive dashboard.
+This page focuses on product, customer, regional, and shipping-related sales analysis.
 
-## Dashboard Preview
+### Visuals
 
-### Page 1 — Executive Overview
+- Sales by Region
+- Top 10 Products by Sales
+- Sales by Customer Country
+- Sales by Shipping Mode
+- Top 10 Customers by Sales
 
-![Executive Overview](screenshots/executive-overview.png)
+### Dashboard Preview
 
-### Page 2 — Sales & Customer Analysis
+![Sales & Customer Analysis](screenshots/Sales%20%26%20Customer%20Analysis.png)
 
-![Sales & Customer Analysis](screenshots/sales-customer-analysis.png)
+---
 
-### Page 3 — Profit & Delivery Analysis
+# Page 3 — Profit & Delivery Analysis
 
-![Profit & Delivery Analysis](screenshots/profit-delivery-analysis.png)
+This page focuses on profitability and delivery performance.
 
-# 5. Power BI DAX Measures
+### KPIs
 
-The dashboard uses simple DAX measures such as:
+- Total Profit
+- Profit Margin
+- Average Shipping Delay
+
+### Visuals
+
+- Profit by Customer Segment
+- Delivery Status Distribution
+- Profit by Shipping Mode
+- Monthly Profit Trend
+
+### Dashboard Preview
+
+![Profit & Delivery Analysis](screenshots/Profit%20%26%20Delivery%20Analysis.png)
+
+---
+
+# 4️⃣ Power BI DAX Measures
+
+The dashboard uses simple DAX measures.
+
+### Total Sales
 
 ```DAX
-Total Sales = SUM(DataCoSupplyChain_Cleaned[Sales])
-```
-
-```DAX
-Total Profit = SUM(DataCoSupplyChain_Cleaned[Order Profit Per Order])
-```
-
-```DAX
-Total Orders = DISTINCTCOUNT(DataCoSupplyChain_Cleaned[Order Id])
-```
-
-```DAX
-Total Customers = DISTINCTCOUNT(DataCoSupplyChain_Cleaned[Customer Id])
-```
-
-```DAX
-Total Products = DISTINCTCOUNT(DataCoSupplyChain_Cleaned[Product Name])
-```
-
-```DAX
-Profit Margin = DIVIDE([Total Profit], [Total Sales])
-```
-
-```DAX
+Total Sales =
+SUM(DataCoSupplyChain_Cleaned[Sales])
+Total Profit =
+SUM(DataCoSupplyChain_Cleaned[Order Profit Per Order])
+Total Orders =
+DISTINCTCOUNT(DataCoSupplyChain_Cleaned[Order Id])
+Total Customers =
+DISTINCTCOUNT(DataCoSupplyChain_Cleaned[Customer Id])
+Total Products =
+DISTINCTCOUNT(DataCoSupplyChain_Cleaned[Product Name])
+Profit Margin =
+DIVIDE([Total Profit], [Total Sales])
 Average Shipping Delay =
 AVERAGE(DataCoSupplyChain_Cleaned[Shipping Delay])
-```
-
----
-
-# 6. Repository Structure
-
-```text
-Supply-Chain-Inventory-Analytics/
-│
-├── DataCoSupplyChain_Cleaned.csv
-├── Supply_Chain_Analytics_SQL.sql
-├── Supply Chain_Analytics_Dashboard.pbix
-├── Python_EDA.ipynb
-└── README.md
-```
-
----
-
-# 7. Tools & Technologies
-
-- Python
-- Pandas
-- Google Colab
-- MySQL
-- MySQL Workbench
-- Power BI
-- DAX
-- Excel/CSV
-
----
-
-# 8. Project Limitations
-
-- The dataset represents historical supply-chain transactions.
-- Delivery status percentages are based on dataset records/line items unless explicitly calculated at unique-order level.
-- Customer IDs are used for customer-level analysis because customer names were removed during data cleaning.
-- The analysis identifies business patterns and operational indicators; it does not confirm the cause of delivery delays or other operational issues.
-
----
-
-# 9. Conclusion
-
-This project demonstrates an end-to-end data analytics workflow:
-
-**Python → MySQL → Power BI**
-
-Python was used for data preparation and exploratory analysis, MySQL was used for structured business analysis, and Power BI was used to present the results through an interactive dashboard.
-
-The project demonstrates practical skills in:
-
-- Data cleaning
-- Exploratory data analysis
-- SQL
-- Business KPI analysis
-- Power BI
-- DAX
-- Data visualization
-- Business insight generation
-
----
-
-## Author
-
-**Ramana Pitla**
-
-Data Analytics Portfolio Project
